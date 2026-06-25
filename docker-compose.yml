@@ -1,0 +1,15 @@
+version: '3'
+services:
+  helio-rest:
+    image: acimmino/helio-rest:latest
+    volumes: 
+      - ./local/:/usr/src/app/local/
+      - ./db/:/usr/src/app/db/
+    ports:
+      - "4567:4567"
+  frontend:
+    image: emiliocrespoperan/helio-frontend:latest
+    depends_on:
+      - helio-rest
+    ports:
+      - "4201:80"
